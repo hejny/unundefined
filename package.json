@@ -1,11 +1,11 @@
 {
-    "name": "spacetrim",
+    "name": "unundefined",
     "version": "0.8.1",
-    "description": "Spacetrim is trimming string from all 4 sides. It is very helpful to keep pretty code indentation without keeping a strange spaces inside a strings.",
+    "description": "Unundefined is trimming string from all 4 sides. It is very helpful to keep pretty code indentation without keeping a strange spaces inside a strings.",
     "sideEffects": false,
-    "module": "./dist/esm/spaceTrim.js",
-    "main": "./dist/umd/spaceTrim.js",
-    "typings": "./dist/esm/typings/spaceTrim.d.ts",
+    "module": "./dist/esm/unundefined.js",
+    "main": "./dist/umd/unundefined.js",
+    "typings": "./dist/esm/typings/unundefined.d.ts",
     "scripts": {
         "test": "jest",
         "lint": "tslint -p tsconfig.json",
@@ -15,15 +15,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/hejny/spacetrim"
+        "url": "https://github.com/hejny/unundefined"
     },
     "keywords": [],
     "author": "",
     "license": "SEE LICENSE IN LICENSE",
     "bugs": {
-        "url": "https://github.com/hejny/spacetrim/issues"
+        "url": "https://github.com/hejny/unundefined/issues"
     },
-    "homepage": "https://github.com/hejny/spacetrim#readme",
+    "homepage": "https://github.com/hejny/unundefined#readme",
     "dependencies": {},
     "devDependencies": {
         "@rollup/plugin-typescript": "8.3.0",

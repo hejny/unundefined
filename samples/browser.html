@@ -3,26 +3,26 @@
     <head>
         <meta charset="UTF-8" />
         <title>Test in the browser</title>
-        <script src="../dist/umd/spaceTrim.js"></script>
+        <script src="../dist/umd/unundefined.js"></script>
     </head>
     <body>
         <script>
             console.log(
-                spaceTrim.default(`
+                unundefined.default(`
 
-                  ✂️ spaceTrim as UMD ✂️
+                  👻 unundefined as UMD 👻
 
             `),
             );
         </script>
 
         <script type="module">
-            import { spaceTrim } from '../dist/esm/spaceTrim.js';
+            import { unundefined } from '../dist/esm/unundefined.js';
 
             console.log(
-                spaceTrim.default(`
+                unundefined.default(`
 
-                  ✂️ spaceTrim as ES module ✂️
+                  👻 unundefined as ES module 👻
 
             `),
             );
