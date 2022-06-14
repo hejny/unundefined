@@ -9,10 +9,5 @@
  * @returns this fake object+function
  */
 export function createDeepFake(): any {
-    return new Proxy(
-        function () {
-            return createDeepFake();
-        },
-        { get: createDeepFake },
-    );
+    return new Proxy(createDeepFake, { get: createDeepFake });
 }
