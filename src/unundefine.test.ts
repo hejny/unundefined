@@ -31,9 +31,12 @@ describe('how unundefined works', () => {
 
     it('works on full objects', () => {
         const object = unundefine({ a: 1, b: { c: 2 } });
-        const x = object.c;
-
         expect(object.c).not.toBeUndefined();
+    });
+
+    it('works deeply on full objects', () => {
+        const object = unundefine({ a: 1, b: { c: 2 } });
+        expect(object.c.a).not.toBeUndefined();
     });
 
     it('works on empty objects', () => {
@@ -64,6 +67,15 @@ describe('how unundefined works', () => {
         expect(unundefine({}).foo.toString()).not.toBeUndefined();
         expect(unundefine({}).foo.toValue()).not.toBeUndefined();
         expect(unundefine({}).foo.toJSON()).not.toBeUndefined();
+    });
+
+    it('works same when calling multiple times', () => {
+        const object = unundefine(
+            unundefine(unundefine({ a: 1, b: { c: 2 } })),
+        );
+        expect(object.a).not.toBeUndefined();
+        expect(object.b).not.toBeUndefined();
+        expect(object.c).not.toBeUndefined();
     });
 
     // TODO: it('works on instances', () => {});
