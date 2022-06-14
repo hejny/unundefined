@@ -3,9 +3,9 @@
     "version": "0.9.0",
     "description": "Proxies an object so that non of the properties will be undefined.",
     "sideEffects": false,
-    "module": "./dist/esm/unundefined.js",
-    "main": "./dist/umd/unundefined.js",
-    "typings": "./dist/esm/typings/unundefined.d.ts",
+    "module": "./dist/esm/main.js",
+    "main": "./dist/umd/main.js",
+    "typings": "./dist/esm/typings/main.d.ts",
     "scripts": {
         "test": "jest",
         "lint": "tslint -p tsconfig.json",
