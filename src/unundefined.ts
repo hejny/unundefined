@@ -1,20 +1,20 @@
 export default unundefined;
 
-// !!! Export + to new file
-function createDeepFake() {
-    new Proxy(
+// !!! Export + to new file OR Remove
+function createDeepFake(): any {
+    return new Proxy(
         function () {
             return createDeepFake();
         },
-        { get: () => createDeepFake() },
+        { get: createDeepFake },
     );
 }
 
+// !!! Export + to new file
 type NotFunction = { [k: string]: unknown } & (
     | { bind?: never }
     | { call?: never }
 );
-const a: NotFunction = {};
 
 /**
  * Proxies an object so that non of the properties will be undefined.
@@ -30,7 +30,11 @@ export function unundefined<T extends NotFunction>(
             const ownValue = Reflect.get(target, key, reciever);
 
             if (ownValue !== undefined) {
-                return ownValue;
+                if (typeof ownValue === 'object' && ownValue !== null) {
+                    return unundefined(ownValue);
+                } else {
+                    return ownValue;
+                }
             }
 
             if (key === 'toString') {
@@ -42,7 +46,7 @@ export function unundefined<T extends NotFunction>(
             }
 
             if (key === 'toJSON') {
-                return () => {};
+                return () => object;
             }
 
             return createDeepFake();

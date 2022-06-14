@@ -1,15 +1,21 @@
 import { unundefined } from './unundefined';
 
 describe('how unundefined works', () => {
+    it('can be stringified', () => {
+        const object = unundefined({ a: 1, b: { c: 2 } });
+        expect(JSON.stringify(object.a)).toBe('1');
+        expect(JSON.stringify(object.b.c)).toBe('2');
+        expect(JSON.stringify(object.b)).toBe('{"c":2}');
+        expect(JSON.stringify(object)).toBe('{"a":1,"b":{"c":2}}');
+    });
+
     it('works as just a simple identity', () => {
         const object = unundefined({ a: 1, b: { c: 2 } });
         expect(object.a).toBe(1);
-        expect(object.b).toEqual({ c: 2 });
+        expect(JSON.stringify(object.b /* [1] */)).toBe(
+            JSON.stringify({ c: 2 }),
+        );
         expect(object.b.c).toBe(2);
-        expect(JSON.stringify(object)).toBe('{"a":1,"b":{"c":2}}');
-
-        const fn = unundefined(() => 'hello');
-        expect(fn()).toBe('hello');
     });
 
     it('allows to modify the object', () => {
@@ -17,17 +23,16 @@ describe('how unundefined works', () => {
         object.a = 2;
         object.b.c = 3;
         expect(object.a).toBe(2);
-        expect(object.b).toEqual({ c: 3 });
+        expect(JSON.stringify(object.b /* [1] */)).toBe(
+            JSON.stringify({ c: 3 }),
+        );
         expect(object.b.c).toBe(3);
     });
 
     it('works on full objects', () => {
         const object = unundefined({ a: 1, b: { c: 2 } });
-        expect(object.a).toBe(1);
-        expect(object.b).toEqual({ c: 2 });
-        expect(object.b.c).toBe(2);
-        expect(object.a).not.toBeUndefined();
-        expect(object.b).not.toBeUndefined();
+        const x = object.c;
+
         expect(object.c).not.toBeUndefined();
     });
 
@@ -61,21 +66,9 @@ describe('how unundefined works', () => {
         expect(unundefined({}).foo.toJSON()).not.toBeUndefined();
     });
 
-
-    it('works on functions', () => {
-        const fn = unundefined(() => 'hello');
-        expect(fn()).toBe('hello');
-        expect(fn.a).not.toBeUndefined();
-        expect(fn.a()).not.toBeUndefined();
-    });
-
-    it('works on functions with extra keys', () => {
-        const fn = unundefined(() => {});
-        fn.a = 1;
-        expect(fn.a).toBe(1);
-        expect(fn.b).not.toBeUndefined();
-    });
- 
-
     // TODO: it('works on instances', () => {});
 });
+
+/**
+ * Note: [1] This is a workaround because .toEqual() does not work on proxies. It throws "Cannot convert object to primitive value".
+ */
