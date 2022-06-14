@@ -1,8 +1,8 @@
-import { unundefined } from './unundefined';
+import { unundefine } from './unundefine';
 
 describe('how unundefined works', () => {
     it('can be stringified', () => {
-        const object = unundefined({ a: 1, b: { c: 2 } });
+        const object = unundefine({ a: 1, b: { c: 2 } });
         expect(JSON.stringify(object.a)).toBe('1');
         expect(JSON.stringify(object.b.c)).toBe('2');
         expect(JSON.stringify(object.b)).toBe('{"c":2}');
@@ -10,7 +10,7 @@ describe('how unundefined works', () => {
     });
 
     it('works as just a simple identity', () => {
-        const object = unundefined({ a: 1, b: { c: 2 } });
+        const object = unundefine({ a: 1, b: { c: 2 } });
         expect(object.a).toBe(1);
         expect(JSON.stringify(object.b /* [1] */)).toBe(
             JSON.stringify({ c: 2 }),
@@ -19,7 +19,7 @@ describe('how unundefined works', () => {
     });
 
     it('allows to modify the object', () => {
-        const object = unundefined({ a: 1, b: { c: 2 } });
+        const object = unundefine({ a: 1, b: { c: 2 } });
         object.a = 2;
         object.b.c = 3;
         expect(object.a).toBe(2);
@@ -30,15 +30,15 @@ describe('how unundefined works', () => {
     });
 
     it('works on full objects', () => {
-        const object = unundefined({ a: 1, b: { c: 2 } });
+        const object = unundefine({ a: 1, b: { c: 2 } });
         const x = object.c;
 
         expect(object.c).not.toBeUndefined();
     });
 
     it('works on empty objects', () => {
-        expect(unundefined({}).foo).not.toBeUndefined();
-        expect(unundefined({}).foo.bar).not.toBeUndefined();
+        expect(unundefine({}).foo).not.toBeUndefined();
+        expect(unundefine({}).foo.bar).not.toBeUndefined();
     });
 
     /*
@@ -55,15 +55,15 @@ describe('how unundefined works', () => {
     */
 
     it('works calling of non-existing functions', () => {
-        expect(unundefined({}).foo()).not.toBeUndefined();
-        expect(unundefined({}).foo.bar()).not.toBeUndefined();
-        expect(unundefined({}).foo().bar()).not.toBeUndefined();
+        expect(unundefine({}).foo()).not.toBeUndefined();
+        expect(unundefine({}).foo.bar()).not.toBeUndefined();
+        expect(unundefine({}).foo().bar()).not.toBeUndefined();
     });
 
     it('works conversion to value', () => {
-        expect(unundefined({}).foo.toString()).not.toBeUndefined();
-        expect(unundefined({}).foo.toValue()).not.toBeUndefined();
-        expect(unundefined({}).foo.toJSON()).not.toBeUndefined();
+        expect(unundefine({}).foo.toString()).not.toBeUndefined();
+        expect(unundefine({}).foo.toValue()).not.toBeUndefined();
+        expect(unundefine({}).foo.toJSON()).not.toBeUndefined();
     });
 
     // TODO: it('works on instances', () => {});

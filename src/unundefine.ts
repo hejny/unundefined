@@ -1,20 +1,6 @@
-export default unundefined;
+import { NotFunction } from './interfaces/NotFunction';
+import { createDeepFake } from './utils/createDeepFake';
 
-// !!! Export + to new file OR Remove
-function createDeepFake(): any {
-    return new Proxy(
-        function () {
-            return createDeepFake();
-        },
-        { get: createDeepFake },
-    );
-}
-
-// !!! Export + to new file
-type NotFunction = { [k: string]: unknown } & (
-    | { bind?: never }
-    | { call?: never }
-);
 
 /**
  * Proxies an object so that non of the properties will be undefined.
@@ -22,7 +8,7 @@ type NotFunction = { [k: string]: unknown } & (
  * @param object
  * @returns object which will never return undefined
  */
-export function unundefined<T extends NotFunction>(
+export function unundefine<T extends NotFunction>(
     object: T,
 ): T & any /* <- TODO: How to not use any? */ {
     return new Proxy(object, {
@@ -31,7 +17,7 @@ export function unundefined<T extends NotFunction>(
 
             if (ownValue !== undefined) {
                 if (typeof ownValue === 'object' && ownValue !== null) {
-                    return unundefined(ownValue);
+                    return unundefine(ownValue);
                 } else {
                     return ownValue;
                 }
