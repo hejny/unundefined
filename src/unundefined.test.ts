@@ -4,14 +4,27 @@ describe('how unundefined works', () => {
     it('works as just a simple identity', () => {
         const object = unundefined({ a: 1, b: { c: 2 } });
         expect(object.a).toBe(1);
-        expect(object.b).toBe({ c: 2 });
+        expect(object.b).toEqual({ c: 2 });
         expect(object.b.c).toBe(2);
+        expect(JSON.stringify(object)).toBe('{"a":1,"b":{"c":2}}');
+
+        const fn = unundefined(() => 'hello');
+        expect(fn()).toBe('hello');
+    });
+
+    it('allows to modify the object', () => {
+        const object = unundefined({ a: 1, b: { c: 2 } });
+        object.a = 2;
+        object.b.c = 3;
+        expect(object.a).toBe(2);
+        expect(object.b).toEqual({ c: 3 });
+        expect(object.b.c).toBe(3);
     });
 
     it('works on full objects', () => {
         const object = unundefined({ a: 1, b: { c: 2 } });
         expect(object.a).toBe(1);
-        expect(object.b).toBe({ c: 2 });
+        expect(object.b).toEqual({ c: 2 });
         expect(object.b.c).toBe(2);
         expect(object.a).not.toBeUndefined();
         expect(object.b).not.toBeUndefined();
@@ -48,8 +61,10 @@ describe('how unundefined works', () => {
         expect(unundefined({}).foo.toJSON()).not.toBeUndefined();
     });
 
+
     it('works on functions', () => {
-        const fn = unundefined(() => {});
+        const fn = unundefined(() => 'hello');
+        expect(fn()).toBe('hello');
         expect(fn.a).not.toBeUndefined();
         expect(fn.a()).not.toBeUndefined();
     });
@@ -60,6 +75,7 @@ describe('how unundefined works', () => {
         expect(fn.a).toBe(1);
         expect(fn.b).not.toBeUndefined();
     });
+ 
 
     // TODO: it('works on instances', () => {});
 });

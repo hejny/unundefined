@@ -2,5 +2,6 @@
 /node_modules
 /dist
 /coverage
+/src/playground.ts
 
 /secrets.md
