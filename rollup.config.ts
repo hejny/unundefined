@@ -1,16 +1,16 @@
 import typescript from '@rollup/plugin-typescript';
 
 export default {
-    input: './src/unundefined.ts',
+    input: './src/main.ts',
     output: [
         {
-            file: './dist/umd/unundefined.js',
+            file: './dist/umd/main.js',
             name: 'unundefined',
             format: 'umd',
             sourcemap: true,
         },
         {
-            file: './dist/esm/unundefined.js',
+            file: './dist/esm/main.js',
             format: 'es',
             sourcemap: true,
         },
