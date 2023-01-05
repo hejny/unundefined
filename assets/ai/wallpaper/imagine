@@ -2,3 +2,4 @@
 #       And every first line will be searched during the harvesting phase
 
 Proxies an object so that non of the properties will be undefined.
+--version 4
