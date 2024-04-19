@@ -1,6 +1,6 @@
 {
     "name": "unundefined",
-    "version": "1.0.38",
+    "version": "1.0.39",
     "description": "Proxies an object so that non of the properties will be undefined.",
     "sideEffects": false,
     "module": "./dist/esm/main.js",
