@@ -11,6 +11,7 @@
 [![test](https://github.com/hejny/unundefined/actions/workflows/test.yml/badge.svg)](https://github.com/hejny/unundefined/actions/workflows/test.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/hejny/unundefined/badge.svg)](https://snyk.io/test/github/hejny/unundefined)
 [![Issues](https://img.shields.io/github/issues/hejny/unundefined.svg?style=flat)](https://github.com/hejny/unundefined/issues)
+[![Socket](https://socket.dev/api/badge/npm/package/unundefined)](https://socket.dev/npm/package/unundefined)
 
 <!--/Badges-->
 
