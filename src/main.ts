@@ -4,4 +4,4 @@ import { createDeepFake } from './utils/createDeepFake';
 
 export default unundefine;
 
-export { unundefine, createDeepFake, NotFunction };
+export { createDeepFake, NotFunction, unundefine };
